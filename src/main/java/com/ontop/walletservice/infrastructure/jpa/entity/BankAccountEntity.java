@@ -1,4 +1,4 @@
-package com.ontop.walletservice.infrastructure.jpa.bank.entity;
+package com.ontop.walletservice.infrastructure.jpa.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

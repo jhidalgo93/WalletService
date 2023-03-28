@@ -1,2 +1,4 @@
-package com.ontop.walletservice.domain.client;public class PaymentTransationClient {
+package com.ontop.walletservice.domain.client;
+
+public interface PaymentTransactionClient {
 }

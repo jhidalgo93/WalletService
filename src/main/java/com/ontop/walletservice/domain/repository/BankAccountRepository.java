@@ -1,9 +1,13 @@
 package com.ontop.walletservice.domain.repository;
 
-import com.ontop.walletservice.domain.model.BankAccount;
+import com.ontop.walletservice.domain.model.bank.RecipientBankAccount;
 
-public interface RecipientBankAccountRepository {
+import java.util.Optional;
 
-    BankAccount save(BankAccount bankAccount);
+public interface BankAccountRepository {
+
+    RecipientBankAccount save(RecipientBankAccount recipientBankAccount);
+
+    Optional<RecipientBankAccount> findByUserId(Long userId);
 
 }

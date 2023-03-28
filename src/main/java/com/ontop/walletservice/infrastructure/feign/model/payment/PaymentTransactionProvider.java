@@ -1,4 +1,4 @@
-package com.ontop.walletservice.infrastructure.feign.payment.model.payment;
+package com.ontop.walletservice.infrastructure.feign.model.payment;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

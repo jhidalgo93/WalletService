@@ -1,4 +1,4 @@
-package com.ontop.walletservice.domain.exception;
+package com.ontop.walletservice.domain.exception.bank;
 
 public class AccountNotFoundException extends RuntimeException {
 

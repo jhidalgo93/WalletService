@@ -1,4 +1,4 @@
-package com.ontop.walletservice.application.dto;
+package com.ontop.walletservice.application.dto.bank;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

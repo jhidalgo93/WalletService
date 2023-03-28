@@ -1,0 +1,37 @@
+DROP TABLE IF EXISTS BANK_ACCOUNT;
+DROP TABLE IF EXISTS PAYMENT_TRANSACTION;
+DROP TABLE IF EXISTS WALLET_BANK_ACCOUNT;
+
+CREATE TABLE BANK_ACCOUNT (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    routing_number BIGINT NOT NULL,
+    account_number BIGINT NOT NULL UNIQUE,
+    bank_name VARCHAR(255) NOT NULL,
+    holder_first_name VARCHAR(255) NOT NULL,
+    holder_last_name VARCHAR(255) NOT NULL,
+    holder_national_identification_number BIGINT NOT NULL,
+    user_id BIGINT NOT NULL
+);
+
+CREATE TABLE PAYMENT_TRANSACTION (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    routing_number BIGINT NOT NULL,
+    account_number BIGINT NOT NULL UNIQUE,
+    bank_name VARCHAR(255) NOT NULL,
+    holder_first_name VARCHAR(255) NOT NULL,
+    holder_last_name VARCHAR(255) NOT NULL,
+    holder_national_identification_number BIGINT NOT NULL,
+    user_id BIGINT NOT NULL
+);
+
+
+CREATE TABLE WALLET_BANK_ACCOUNT (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    type VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    account_number VARCHAR(255) NOT NULL,
+    currency VARCHAR(255) NOT NULL,
+    routing_number VARCHAR(255) NOT NULL
+);
+
+

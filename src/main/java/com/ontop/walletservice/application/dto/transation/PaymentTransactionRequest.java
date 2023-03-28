@@ -1,4 +1,4 @@
-package com.ontop.walletservice.application.dto.payment;
+package com.ontop.walletservice.application.dto.transation;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -15,7 +15,7 @@ public class PaymentTransactionRequest {
     @NotNull(message = "Amount cannot be null")
     private Double amount;
 
-    @JsonProperty("bank_account_id")
-    private Long bankAccountId;
+    @NotNull(message = "User id cannot be null")
+    private Long userId;
 
 }

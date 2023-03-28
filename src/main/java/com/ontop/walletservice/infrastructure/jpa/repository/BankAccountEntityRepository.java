@@ -1,6 +1,6 @@
-package com.ontop.walletservice.infrastructure.jpa.bank.repository;
+package com.ontop.walletservice.infrastructure.jpa.repository;
 
-import com.ontop.walletservice.infrastructure.jpa.bank.entity.BankAccountEntity;
+import com.ontop.walletservice.infrastructure.jpa.entity.BankAccountEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

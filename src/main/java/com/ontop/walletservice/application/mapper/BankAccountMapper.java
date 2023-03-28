@@ -1,20 +1,22 @@
 package com.ontop.walletservice.application.mapper;
 
-import com.ontop.walletservice.application.dto.BankAccountRequest;
-import com.ontop.walletservice.domain.model.BankAccount;
+import com.ontop.walletservice.application.dto.bank.BankAccountRequest;
+import com.ontop.walletservice.application.dto.bank.BankAccountResponse;
+import com.ontop.walletservice.domain.model.bank.RecipientBankAccount;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
-public interface BankAccountRequestMapper {
+public interface BankAccountMapper {
 
-    BankAccountRequestMapper INSTANCE = Mappers.getMapper(BankAccountRequestMapper.class);
+    BankAccountMapper INSTANCE = Mappers.getMapper(BankAccountMapper.class);
 
 
-    BankAccountRequest toBankAccountRequest(BankAccount bankAccount);
+    BankAccountResponse toBankAccountResponse(RecipientBankAccount recipientBankAccount);
 
     @Mapping(target = "userId", ignore = true)
-    BankAccount toBankAccount(BankAccountRequest bankAccountRequest);
+    @Mapping(target = "id", ignore = true)
+    RecipientBankAccount toBankAccount(BankAccountRequest bankAccountRequest);
 
 }

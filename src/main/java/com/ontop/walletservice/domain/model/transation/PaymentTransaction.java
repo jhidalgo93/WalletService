@@ -1,6 +1,5 @@
-package com.ontop.walletservice.domain.model.transation.payment;
+package com.ontop.walletservice.domain.model.transation;
 
-import com.ontop.walletservice.domain.model.transation.Transaction;
 import com.ontop.walletservice.infrastructure.feign.model.payment.PaymentSourceProvider;
 
 import java.io.Serializable;

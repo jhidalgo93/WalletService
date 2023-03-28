@@ -2,7 +2,7 @@ package com.ontop.walletservice.domain.model.bank;
 
 import java.io.Serializable;
 
-public class BankAccount implements Serializable {
+public class RecipientBankAccount implements Serializable {
     private Long id;
     private Long routingNumber;
     private Long accountNumber;
@@ -17,8 +17,8 @@ public class BankAccount implements Serializable {
 
     private Long userId;
 
-    public BankAccount(Long id, Long routingNumber, Long accountNumber, String bankName, String holderFirstName,
-                       String holderLastName, Long holderNationalIdentificationNumber, Long userId) {
+    public RecipientBankAccount(Long id, Long routingNumber, Long accountNumber, String bankName, String holderFirstName,
+                                String holderLastName, Long holderNationalIdentificationNumber, Long userId) {
         this.id = id;
         this.routingNumber = routingNumber;
         this.accountNumber = accountNumber;

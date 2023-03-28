@@ -6,13 +6,13 @@ import com.ontop.walletservice.domain.model.bank.RecipientBankAccount;
 import com.ontop.walletservice.domain.repository.BankAccountRepository;
 
 
-public class DomianBankAccountService implements BankAccountService {
+public class DomianRecipientBankAccountService implements RecipientBankAccountService {
 
 
     private final BankAccountRepository bankAccountRepository;
 
 
-    public DomianBankAccountService(BankAccountRepository bankAccountRepository) {
+    public DomianRecipientBankAccountService(BankAccountRepository bankAccountRepository) {
         this.bankAccountRepository = bankAccountRepository;
     }
 

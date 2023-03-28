@@ -2,7 +2,7 @@ package com.ontop.walletservice.domain.service.bank;
 
 import com.ontop.walletservice.domain.model.bank.RecipientBankAccount;
 
-public interface BankAccountService {
+public interface RecipientBankAccountService {
 
     RecipientBankAccount createBankAccount(RecipientBankAccount recipientBankAccount);
 
