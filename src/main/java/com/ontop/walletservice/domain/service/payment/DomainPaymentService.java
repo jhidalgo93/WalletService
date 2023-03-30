@@ -1,39 +1,45 @@
-package com.ontop.walletservice.domain.service.transation;
+package com.ontop.walletservice.domain.service.payment;
 
-import com.ontop.walletservice.domain.client.WalletClient;
 import com.ontop.walletservice.domain.exception.bank.InvalidBankAccountException;
 import com.ontop.walletservice.domain.exception.payment.InvalidPaymentException;
 import com.ontop.walletservice.domain.model.bank.RecipientBankAccount;
-import com.ontop.walletservice.domain.model.transation.PaymentTransaction;
+import com.ontop.walletservice.domain.model.payment.Payment;
 import com.ontop.walletservice.domain.repository.BankAccountRepository;
+import com.ontop.walletservice.domain.service.wallet.WalletService;
 
-public class DomianPaymentTransactionService implements PaymentTransactionService {
+public class DomainPaymentService implements PaymentService {
 
 
     private final BankAccountRepository bankAccountRepository;
 
-    private final WalletClient walletClient;
+    private final WalletService walletService;
 
-    public DomianPaymentTransactionService(BankAccountRepository bankAccountRepository, WalletClient walletClient) {
+    public DomainPaymentService(BankAccountRepository bankAccountRepository,
+                                WalletService walletService) {
         this.bankAccountRepository = bankAccountRepository;
-        this.walletClient = walletClient;
+        this.walletService = walletService;
     }
 
     @Override
-    public PaymentTransaction createPaymentTransaction(Long userId, Double amount) {
+    public Payment createPaymentTransaction(Long userId, Double amount) {
 
         checkValidPaymentUser(userId);
         checkValidPaymentAmount(amount);
         checkUserFounds(userId, amount);
 
         RecipientBankAccount userRecipientBankAccount = getUserBankAccount(userId);
-        PaymentTransaction paymentTransaction = new PaymentTransaction();
-        paymentTransaction.setUserId(userId);
-        paymentTransaction.setAmount(amount);
-        paymentTransaction.setRecipientBankAccountId(userRecipientBankAccount.getId());
 
-        //tenemos que restar al balance
+        walletService.createWalletTransaction(userId, -amount);
 
+        //Tengo que crear en mi base de datos
+
+        Payment payment = new Payment();
+        payment.setUserId(userId);
+        payment.setAmount(amount);
+        payment.setBankAccount(userRecipientBankAccount);
+
+        // tenemos que restar al balance
+        // Tenemos que crear una n
 
 
 
@@ -46,7 +52,7 @@ public class DomianPaymentTransactionService implements PaymentTransactionServic
     }
 
     private void checkUserFounds(Long userId, Double amount) {
-        Double userBalance = walletClient.getUserBalance(userId);
+        Double userBalance = walletService.getWalletBalance(userId);
         if(userBalance < amount)
             throw new InvalidPaymentException("insufficient funds");
     }

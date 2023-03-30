@@ -1,15 +1,16 @@
-package com.ontop.walletservice.infrastructure.jpa.repository.adapter;
+package com.ontop.walletservice.infrastructure.jpa.repository.bank;
 
 import com.ontop.walletservice.domain.model.bank.RecipientBankAccount;
 import com.ontop.walletservice.domain.repository.BankAccountRepository;
 import com.ontop.walletservice.infrastructure.jpa.entity.BankAccountEntity;
 import com.ontop.walletservice.infrastructure.jpa.mapper.BankAccountRepositoryMapper;
-import com.ontop.walletservice.infrastructure.jpa.repository.BankAccountEntityRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
+@AllArgsConstructor
 public class BankAccountRepositoryAdapter implements BankAccountRepository {
 
     private final BankAccountEntityRepository bankAccountRepository;
@@ -17,10 +18,6 @@ public class BankAccountRepositoryAdapter implements BankAccountRepository {
     private final BankAccountRepositoryMapper bankAccountRepositoryMapper
             = BankAccountRepositoryMapper.INSTANCE;
 
-
-    public BankAccountRepositoryAdapter(BankAccountEntityRepository bankAccountRepository) {
-        this.bankAccountRepository = bankAccountRepository;
-    }
 
     @Override
     public RecipientBankAccount save(RecipientBankAccount recipientBankAccount) {

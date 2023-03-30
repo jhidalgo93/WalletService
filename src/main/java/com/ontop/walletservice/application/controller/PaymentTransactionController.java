@@ -3,8 +3,7 @@ package com.ontop.walletservice.application.controller;
 import com.ontop.walletservice.application.dto.transation.PaymentTransactionRequest;
 import com.ontop.walletservice.application.dto.transation.PaymentTransactionResponse;
 import com.ontop.walletservice.application.mapper.PaymentMapper;
-import com.ontop.walletservice.domain.model.transation.PaymentTransaction;
-import com.ontop.walletservice.domain.service.transation.PaymentTransactionService;
+import com.ontop.walletservice.domain.service.payment.PaymentService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,21 +13,20 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(value = "/payment-transactions")
+@RequestMapping(value = "/user/{user_id}/payment-transactions")
 public class PaymentTransactionController {
 
 
-    private final PaymentTransactionService paymentTransactionService;
+    private final PaymentService paymentService;
 
     private final PaymentMapper paymentMapper = PaymentMapper.INSTANCE;
 
     @PostMapping
-    public PaymentTransactionResponse createPaymentTransaction(
+    public PaymentTransactionResponse createPaymentTransaction(@PathVariable("user_id") long userId,
             @RequestBody @Valid PaymentTransactionRequest paymentTransactionRequest) {
 
         return paymentMapper.toPaymentTransactionResponse(
-                paymentTransactionService.createPaymentTransaction(paymentTransactionRequest.getUserId(),
-                        paymentTransactionRequest.getAmount()));
+                paymentService.createPaymentTransaction(userId, paymentTransactionRequest.getAmount()));
     }
 
 

@@ -2,7 +2,8 @@ package com.ontop.walletservice.infrastructure.feign.client.adapter;
 
 import com.ontop.walletservice.domain.client.WalletClient;
 import com.ontop.walletservice.infrastructure.feign.client.FeignWalletClient;
-import com.ontop.walletservice.infrastructure.feign.model.wallet.UserBalance;
+import com.ontop.walletservice.infrastructure.feign.model.wallet.WalletTransactionRequest;
+import com.ontop.walletservice.infrastructure.feign.model.wallet.WalletUserBalanceResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -15,8 +16,16 @@ public class WalletClientAdapter implements WalletClient {
 
 
     @Override
-    public Double getUserBalance(Long userId) {
-        UserBalance userBalance = feignWalletClient.getUserBalance(userId);
-        return userBalance.getBalance();
+    public Double getWalletBalance(Long userId) {
+        WalletUserBalanceResponse walletUserBalanceResponse = feignWalletClient.getWalletUserBalance(userId);
+        return walletUserBalanceResponse.getBalance();
     }
+
+    @Override
+    public Long createWalletTransaction(Long userId, Double amount) {
+        return feignWalletClient.createWalletTransaction(new WalletTransactionRequest(userId, amount))
+                .getWalletTransactionId();
+    }
+
+
 }

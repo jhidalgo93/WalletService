@@ -8,9 +8,10 @@ import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
-public class UserBalance implements Serializable {
+public class WalletUserBalanceResponse implements Serializable {
 
     private Double balance;
     @JsonProperty("user_id")
     private Long userId;
+
 }

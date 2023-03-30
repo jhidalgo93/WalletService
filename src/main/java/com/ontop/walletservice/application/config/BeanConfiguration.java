@@ -2,10 +2,13 @@ package com.ontop.walletservice.application.config;
 
 import com.ontop.walletservice.domain.client.WalletClient;
 import com.ontop.walletservice.domain.repository.BankAccountRepository;
+import com.ontop.walletservice.domain.repository.WalletTransactionRepository;
 import com.ontop.walletservice.domain.service.bank.RecipientBankAccountService;
 import com.ontop.walletservice.domain.service.bank.DomianRecipientBankAccountService;
-import com.ontop.walletservice.domain.service.transation.DomianPaymentTransactionService;
-import com.ontop.walletservice.domain.service.transation.PaymentTransactionService;
+import com.ontop.walletservice.domain.service.payment.DomainPaymentService;
+import com.ontop.walletservice.domain.service.payment.PaymentService;
+import com.ontop.walletservice.domain.service.wallet.DomainWalletService;
+import com.ontop.walletservice.domain.service.wallet.WalletService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,10 +22,16 @@ public class BeanConfiguration {
 
 
     @Bean
-    public PaymentTransactionService paymentTransactionService(BankAccountRepository bankAccountRepository,
-                                                               WalletClient walletClient) {
-        return new DomianPaymentTransactionService(bankAccountRepository, walletClient);
+    public PaymentService paymentService(BankAccountRepository bankAccountRepository,
+                                                    WalletService walletService) {
+        return new DomainPaymentService(bankAccountRepository, walletService);
     }
 
+
+    @Bean
+    public WalletService walletService(WalletClient walletClient,
+                                       WalletTransactionRepository walletTransactionRepository) {
+        return new DomainWalletService(walletClient, walletTransactionRepository);
+    }
 
 }
