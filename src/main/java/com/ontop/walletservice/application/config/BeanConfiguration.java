@@ -2,6 +2,7 @@ package com.ontop.walletservice.application.config;
 
 import com.ontop.walletservice.domain.client.WalletClient;
 import com.ontop.walletservice.domain.repository.BankAccountRepository;
+import com.ontop.walletservice.domain.repository.WalletBankAccountRepository;
 import com.ontop.walletservice.domain.repository.WalletTransactionRepository;
 import com.ontop.walletservice.domain.service.bank.RecipientBankAccountService;
 import com.ontop.walletservice.domain.service.bank.DomianRecipientBankAccountService;
@@ -30,8 +31,9 @@ public class BeanConfiguration {
 
     @Bean
     public WalletService walletService(WalletClient walletClient,
-                                       WalletTransactionRepository walletTransactionRepository) {
-        return new DomainWalletService(walletClient, walletTransactionRepository);
+                                       WalletTransactionRepository walletTransactionRepository,
+                                       WalletBankAccountRepository walletBankAccountRepository) {
+        return new DomainWalletService(walletClient, walletTransactionRepository, walletBankAccountRepository);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.ontop.walletservice.domain.model.bank;
+package com.ontop.walletservice.domain.model.recipient;
 
 import java.io.Serializable;
 

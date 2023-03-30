@@ -7,16 +7,15 @@ public class PaymentState implements Serializable {
 
     private Integer stateId;
 
-    private Payment payment;
-
+    private String paymentId;
     private String status;
 
     private LocalDateTime created;
 
 
-    public PaymentState(Integer stateId, Payment payment, String status, LocalDateTime created) {
+    public PaymentState(Integer stateId, String paymentId, String status, LocalDateTime created) {
         this.stateId = stateId;
-        this.payment = payment;
+        this.paymentId = paymentId;
         this.status = status;
         this.created = created;
     }
@@ -29,12 +28,12 @@ public class PaymentState implements Serializable {
         this.stateId = stateId;
     }
 
-    public Payment getPayment() {
-        return payment;
+    public String getPaymentId() {
+        return paymentId;
     }
 
-    public void setPayment(Payment payment) {
-        this.payment = payment;
+    public void setPaymentId(String paymentId) {
+        this.paymentId = paymentId;
     }
 
     public String getStatus() {

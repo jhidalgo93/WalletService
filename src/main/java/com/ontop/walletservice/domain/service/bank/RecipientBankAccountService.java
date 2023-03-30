@@ -1,6 +1,6 @@
 package com.ontop.walletservice.domain.service.bank;
 
-import com.ontop.walletservice.domain.model.bank.RecipientBankAccount;
+import com.ontop.walletservice.domain.model.recipient.RecipientBankAccount;
 
 public interface RecipientBankAccountService {
 

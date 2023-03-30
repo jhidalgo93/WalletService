@@ -1,9 +1,10 @@
 package com.ontop.walletservice.domain.service.payment;
 
-import com.ontop.walletservice.domain.exception.bank.InvalidBankAccountException;
-import com.ontop.walletservice.domain.exception.payment.InvalidPaymentException;
-import com.ontop.walletservice.domain.model.bank.RecipientBankAccount;
+import com.ontop.walletservice.domain.exception.InvalidBankAccountException;
+import com.ontop.walletservice.domain.exception.InvalidPaymentException;
+import com.ontop.walletservice.domain.model.recipient.RecipientBankAccount;
 import com.ontop.walletservice.domain.model.payment.Payment;
+import com.ontop.walletservice.domain.model.wallet.WalletTransaction;
 import com.ontop.walletservice.domain.repository.BankAccountRepository;
 import com.ontop.walletservice.domain.service.wallet.WalletService;
 
@@ -29,14 +30,14 @@ public class DomainPaymentService implements PaymentService {
 
         RecipientBankAccount userRecipientBankAccount = getUserBankAccount(userId);
 
-        walletService.createWalletTransaction(userId, -amount);
+        WalletTransaction walletTransaction = walletService.createWithdrawWalletTransaction(userId, amount);
 
         //Tengo que crear en mi base de datos
-
         Payment payment = new Payment();
         payment.setUserId(userId);
         payment.setAmount(amount);
         payment.setBankAccount(userRecipientBankAccount);
+        payment.setWalletTransaction(walletTransaction);
 
         // tenemos que restar al balance
         // Tenemos que crear una n

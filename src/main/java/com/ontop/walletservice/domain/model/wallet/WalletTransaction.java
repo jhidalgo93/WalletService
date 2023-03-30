@@ -1,36 +1,39 @@
 package com.ontop.walletservice.domain.model.wallet;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class WalletTransaction implements Serializable {
 
-    private String id;
+    private Long id;
 
     private Long userId;
 
-    private BigDecimal amount;
+    private Double amount;
 
     private LocalDateTime created;
 
     private WalletTransactionType transactionType;
 
+    private WalletBankAccount walletBankAccount;
 
-    public WalletTransaction(String id, Long userId, BigDecimal amount, LocalDateTime created, WalletTransactionType transactionType) {
+    public WalletTransaction(){}
+
+    public WalletTransaction(Long id, Long userId, Double amount, LocalDateTime created,
+                             WalletTransactionType transactionType, WalletBankAccount walletBankAccount) {
         this.id = id;
         this.userId = userId;
         this.amount = amount;
         this.created = created;
         this.transactionType = transactionType;
+        this.walletBankAccount = walletBankAccount;
     }
 
-
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -42,11 +45,11 @@ public class WalletTransaction implements Serializable {
         this.userId = userId;
     }
 
-    public BigDecimal getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
@@ -64,5 +67,13 @@ public class WalletTransaction implements Serializable {
 
     public void setTransactionType(WalletTransactionType transactionType) {
         this.transactionType = transactionType;
+    }
+
+    public WalletBankAccount getWalletBankAccount() {
+        return walletBankAccount;
+    }
+
+    public void setWalletBankAccount(WalletBankAccount walletBankAccount) {
+        this.walletBankAccount = walletBankAccount;
     }
 }

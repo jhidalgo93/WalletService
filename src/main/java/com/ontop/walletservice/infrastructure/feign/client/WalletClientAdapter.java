@@ -1,4 +1,4 @@
-package com.ontop.walletservice.infrastructure.feign.client.adapter;
+package com.ontop.walletservice.infrastructure.feign.client;
 
 import com.ontop.walletservice.domain.client.WalletClient;
 import com.ontop.walletservice.infrastructure.feign.client.FeignWalletClient;

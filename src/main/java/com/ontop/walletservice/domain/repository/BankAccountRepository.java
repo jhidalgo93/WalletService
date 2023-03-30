@@ -1,6 +1,6 @@
 package com.ontop.walletservice.domain.repository;
 
-import com.ontop.walletservice.domain.model.bank.RecipientBankAccount;
+import com.ontop.walletservice.domain.model.recipient.RecipientBankAccount;
 
 import java.util.Optional;
 

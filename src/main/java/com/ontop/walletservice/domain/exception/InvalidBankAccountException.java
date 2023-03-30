@@ -1,4 +1,4 @@
-package com.ontop.walletservice.domain.exception.bank;
+package com.ontop.walletservice.domain.exception;
 
 public class InvalidBankAccountException extends RuntimeException {
 

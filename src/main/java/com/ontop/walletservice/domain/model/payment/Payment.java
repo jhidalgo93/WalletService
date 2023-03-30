@@ -1,6 +1,7 @@
 package com.ontop.walletservice.domain.model.payment;
 
-import com.ontop.walletservice.domain.model.bank.RecipientBankAccount;
+import com.ontop.walletservice.domain.model.recipient.RecipientBankAccount;
+import com.ontop.walletservice.domain.model.wallet.WalletTransaction;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -18,20 +19,23 @@ public class Payment implements Serializable  {
 
     private LocalDateTime createDate;
 
+    private WalletTransaction walletTransaction;
+
     private List<PaymentState> paymentStates;
 
     public Payment() {
     }
 
-    public Payment(String id, RecipientBankAccount bankAccount, Double amount,
-                   LocalDateTime createDate, List<PaymentState> paymentStates) {
+    public Payment(String id, RecipientBankAccount bankAccount, Long userId, Double amount, LocalDateTime createDate,
+                   WalletTransaction walletTransaction, List<PaymentState> paymentStates) {
         this.id = id;
         this.bankAccount = bankAccount;
+        this.userId = userId;
         this.amount = amount;
         this.createDate = createDate;
+        this.walletTransaction = walletTransaction;
         this.paymentStates = paymentStates;
     }
-
 
     public String getId() {
         return id;
@@ -79,5 +83,13 @@ public class Payment implements Serializable  {
 
     public void setPaymentStates(List<PaymentState> paymentStates) {
         this.paymentStates = paymentStates;
+    }
+
+    public WalletTransaction getWalletTransaction() {
+        return walletTransaction;
+    }
+
+    public void setWalletTransaction(WalletTransaction walletTransaction) {
+        this.walletTransaction = walletTransaction;
     }
 }

@@ -1,4 +1,4 @@
-package com.ontop.walletservice.domain.exception.payment;
+package com.ontop.walletservice.domain.exception;
 
 public class InvalidPaymentException extends RuntimeException{
 

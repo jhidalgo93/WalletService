@@ -3,7 +3,7 @@ package com.ontop.walletservice.application.controller;
 import com.ontop.walletservice.application.dto.bank.BankAccountRequest;
 import com.ontop.walletservice.application.dto.bank.BankAccountResponse;
 import com.ontop.walletservice.application.mapper.BankAccountMapper;
-import com.ontop.walletservice.domain.model.bank.RecipientBankAccount;
+import com.ontop.walletservice.domain.model.recipient.RecipientBankAccount;
 import com.ontop.walletservice.domain.service.bank.RecipientBankAccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

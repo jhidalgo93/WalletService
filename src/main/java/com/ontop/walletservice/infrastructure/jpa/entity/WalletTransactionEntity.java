@@ -30,4 +30,8 @@ public class WalletTransactionEntity {
     @Column(name = "transaction_type")
     private WalletTransactionType transactionType;
 
+    @ManyToOne
+    @JoinColumn(name = "wallet_bank_account_id")
+    private WalletBankAccountEntity walletBankAccount;
+
 }

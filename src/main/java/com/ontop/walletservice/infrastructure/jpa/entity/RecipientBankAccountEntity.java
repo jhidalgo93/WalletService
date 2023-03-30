@@ -10,8 +10,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "bank_account")
-public class BankAccountEntity {
+@Table(name = "recipient_bank_account")
+public class RecipientBankAccountEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
