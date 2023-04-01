@@ -5,6 +5,7 @@ import com.ontop.walletservice.application.dto.transation.PaymentTransactionResp
 import com.ontop.walletservice.application.mapper.PaymentMapper;
 import com.ontop.walletservice.domain.service.payment.PaymentService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -22,6 +23,7 @@ public class PaymentTransactionController {
     private final PaymentMapper paymentMapper = PaymentMapper.INSTANCE;
 
     @PostMapping
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public PaymentTransactionResponse createPaymentTransaction(@PathVariable("user_id") long userId,
             @RequestBody @Valid PaymentTransactionRequest paymentTransactionRequest) {
 

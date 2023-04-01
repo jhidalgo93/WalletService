@@ -1,10 +1,10 @@
 package com.ontop.walletservice.application.controller;
 
-import com.ontop.walletservice.application.dto.bank.BankAccountRequest;
-import com.ontop.walletservice.application.dto.bank.BankAccountResponse;
-import com.ontop.walletservice.application.mapper.BankAccountMapper;
+import com.ontop.walletservice.application.dto.recipient.RecipientBankAccountRequest;
+import com.ontop.walletservice.application.dto.recipient.RecipientBankAccountResponse;
+import com.ontop.walletservice.application.mapper.RecipientBankAccountMapper;
 import com.ontop.walletservice.domain.model.recipient.RecipientBankAccount;
-import com.ontop.walletservice.domain.service.bank.RecipientBankAccountService;
+import com.ontop.walletservice.domain.service.recipient.RecipientBankAccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +18,13 @@ public class RecipientBankAccountController {
 
     private final RecipientBankAccountService recipientBankAccountService;
 
-    private final BankAccountMapper bankAccountRequestMapper = BankAccountMapper.INSTANCE;
+    private final RecipientBankAccountMapper bankAccountRequestMapper = RecipientBankAccountMapper.INSTANCE;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public BankAccountResponse createBankAccount(@PathVariable("user_id") long userId,
-                                                 @RequestBody @Valid BankAccountRequest bankAccountRequest) {
-        RecipientBankAccount recipientBankAccount = bankAccountRequestMapper.toBankAccount(bankAccountRequest);
+    public RecipientBankAccountResponse createBankAccount(@PathVariable("user_id") long userId,
+                                                          @RequestBody @Valid RecipientBankAccountRequest recipientBankAccountRequest) {
+        RecipientBankAccount recipientBankAccount = bankAccountRequestMapper.toBankAccount(recipientBankAccountRequest);
         recipientBankAccount.setUserId(userId);
 
         return bankAccountRequestMapper.toBankAccountResponse(recipientBankAccountService.createBankAccount(recipientBankAccount));
@@ -33,7 +33,7 @@ public class RecipientBankAccountController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public BankAccountResponse getBankAccount(@PathVariable("user_id") long userId) {
+    public RecipientBankAccountResponse getBankAccount(@PathVariable("user_id") long userId) {
         RecipientBankAccount recipientBankAccount = recipientBankAccountService.getBankAccountByUserId(userId);
         return bankAccountRequestMapper.toBankAccountResponse(recipientBankAccount);
     }

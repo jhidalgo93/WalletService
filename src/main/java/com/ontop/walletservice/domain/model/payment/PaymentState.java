@@ -1,54 +1,24 @@
 package com.ontop.walletservice.domain.model.payment;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
 public class PaymentState implements Serializable {
 
-    private Integer stateId;
+    private Long id;
 
-    private String paymentId;
-    private String status;
+    private Long paymentId;
+    private PaymentStatus status;
 
     private LocalDateTime created;
 
-
-    public PaymentState(Integer stateId, String paymentId, String status, LocalDateTime created) {
-        this.stateId = stateId;
-        this.paymentId = paymentId;
-        this.status = status;
-        this.created = created;
-    }
-
-    public Integer getStateId() {
-        return stateId;
-    }
-
-    public void setStateId(Integer stateId) {
-        this.stateId = stateId;
-    }
-
-    public String getPaymentId() {
-        return paymentId;
-    }
-
-    public void setPaymentId(String paymentId) {
-        this.paymentId = paymentId;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public LocalDateTime getCreated() {
-        return created;
-    }
-
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
-    }
 }

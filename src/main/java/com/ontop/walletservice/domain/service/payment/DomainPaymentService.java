@@ -1,25 +1,35 @@
 package com.ontop.walletservice.domain.service.payment;
 
+import com.ontop.walletservice.domain.client.PaymentProviderClient;
 import com.ontop.walletservice.domain.exception.InvalidBankAccountException;
 import com.ontop.walletservice.domain.exception.InvalidPaymentException;
+import com.ontop.walletservice.domain.exception.PaymentProviderException;
+import com.ontop.walletservice.domain.model.payment.PaymentProvider;
+import com.ontop.walletservice.domain.model.payment.PaymentState;
+import com.ontop.walletservice.domain.model.payment.PaymentStatus;
 import com.ontop.walletservice.domain.model.recipient.RecipientBankAccount;
 import com.ontop.walletservice.domain.model.payment.Payment;
 import com.ontop.walletservice.domain.model.wallet.WalletTransaction;
-import com.ontop.walletservice.domain.repository.BankAccountRepository;
+import com.ontop.walletservice.domain.repository.PaymentRepository;
+import com.ontop.walletservice.domain.repository.RecipientBankAccountRepository;
 import com.ontop.walletservice.domain.service.wallet.WalletService;
+import lombok.AllArgsConstructor;
 
+import java.util.List;
+
+@AllArgsConstructor
 public class DomainPaymentService implements PaymentService {
 
 
-    private final BankAccountRepository bankAccountRepository;
+    private final RecipientBankAccountRepository recipientBankAccountRepository;
+
+
+    private final PaymentRepository paymentRepository;
 
     private final WalletService walletService;
 
-    public DomainPaymentService(BankAccountRepository bankAccountRepository,
-                                WalletService walletService) {
-        this.bankAccountRepository = bankAccountRepository;
-        this.walletService = walletService;
-    }
+    private final PaymentProviderClient paymentProviderClient;
+
 
     @Override
     public Payment createPaymentTransaction(Long userId, Double amount) {
@@ -31,25 +41,51 @@ public class DomainPaymentService implements PaymentService {
         RecipientBankAccount userRecipientBankAccount = getUserBankAccount(userId);
 
         WalletTransaction walletTransaction = walletService.createWithdrawWalletTransaction(userId, amount);
-
-        //Tengo que crear en mi base de datos
-        Payment payment = new Payment();
-        payment.setUserId(userId);
-        payment.setAmount(amount);
-        payment.setBankAccount(userRecipientBankAccount);
-        payment.setWalletTransaction(walletTransaction);
-
-        // tenemos que restar al balance
-        // Tenemos que crear una n
+        Payment payment = createPayment(userRecipientBankAccount, walletTransaction, amount);
 
 
+        return payment;
+    }
 
+    private Payment createPayment(RecipientBankAccount userRecipientBankAccount, WalletTransaction walletTransaction, Double amount) {
+        try {
 
+            PaymentProvider paymentProvider = paymentProviderClient.createPaymentProvider(walletTransaction.getWalletBankAccount(),
+                    userRecipientBankAccount, amount);
 
-        // tenemos que invocar el metodo de pago si pasa algun error debemos devolver lo restado
+            Payment payment = buildPayment(userRecipientBankAccount, walletTransaction, PaymentStatus.IN_PROGRESS,
+                    amount);
+            payment.setTransactionId(paymentProvider.getStatus());
 
+            Payment createdPayment = paymentRepository.save(payment);
 
-        return null;
+            return createdPayment;
+        } catch (Exception e) {
+            revertWithdrawTransaction(userRecipientBankAccount, walletTransaction, amount);
+            throw new PaymentProviderException("Un expected erro, it was not possible process your payment");
+        }
+
+    }
+
+    private void revertWithdrawTransaction(RecipientBankAccount userRecipientBankAccount, WalletTransaction walletTransaction, Double amount) {
+        walletService.createTopUpWalletTransaction(walletTransaction.getUserId(),
+                walletTransaction.getAmount());
+        Payment errorPayment = buildPayment(userRecipientBankAccount, walletTransaction, PaymentStatus.ERROR,
+                amount);
+        paymentRepository.save(errorPayment);
+    }
+
+    private Payment buildPayment(RecipientBankAccount userRecipientBankAccount, WalletTransaction walletTransaction,
+                                 PaymentStatus paymentStatus, Double amount) {
+        return Payment.builder()
+                .userId(walletTransaction.getUserId())
+                .amount(amount)
+                .bankAccount(userRecipientBankAccount)
+                .walletTransaction(walletTransaction)
+                .paymentStates(List.of(PaymentState.builder()
+                        .status(paymentStatus)
+                        .build()))
+                .build();
     }
 
     private void checkUserFounds(Long userId, Double amount) {
@@ -69,7 +105,7 @@ public class DomainPaymentService implements PaymentService {
     }
 
     private RecipientBankAccount getUserBankAccount(Long userId) {
-        return bankAccountRepository.findByUserId(userId)
+        return recipientBankAccountRepository.findByUserId(userId)
                 .orElseThrow(() -> new InvalidBankAccountException(
                         String.format("To process a payment the user with id: %s has to have a registered bank account",
                                 userId))
