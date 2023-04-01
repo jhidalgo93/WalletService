@@ -5,64 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d75a9a0-6702-488c-a7af-5238b95649e3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/client/PaymentProviderClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/exception/PaymentProviderException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/model/payment/PaymentProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/model/payment/PaymentStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/repository/PaymentRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/client/payment/FeignPaymentProviderClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/client/payment/adapter/PaymentProviderAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/client/payment/dto/response/PaymentProviderInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/client/payment/dto/response/PaymentProviderRequestInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/client/payment/dto/response/PaymentProviderResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/client/payment/mapper/PaymentProviderMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/payment/PaymentEntityRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/payment/PaymentStateEntityRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/payment/adapter/PaymentRepositoryAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/payment/entity/PaymentEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/payment/entity/PaymentStateEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/payment/mapper/PaymentRepositoryMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/application/config/BeanConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/application/config/BeanConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/application/config/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/application/config/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/application/controller/PaymentTransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/application/controller/PaymentTransactionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/application/controller/RecipientBankAccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/application/controller/RecipientBankAccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/application/dto/bank/BankAccountRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/application/dto/recipient/RecipientBankAccountRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/application/dto/bank/BankAccountResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/application/dto/recipient/RecipientBankAccountResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/application/mapper/BankAccountMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/application/mapper/RecipientBankAccountMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/client/PaymentTransactionClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/model/payment/Payment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/model/payment/Payment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/model/payment/PaymentState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/model/payment/PaymentState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/model/recipient/RecipientBankAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/model/recipient/RecipientBankAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/model/wallet/WalletBankAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/model/wallet/WalletBankAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/model/wallet/WalletTransaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/model/wallet/WalletTransaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/repository/BankAccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/repository/RecipientBankAccountRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/service/bank/DomianRecipientBankAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/service/recipient/DomianRecipientBankAccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/service/bank/RecipientBankAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/service/recipient/RecipientBankAccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/exception/GeneralErrorWalletException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/exception/GeneralErrorWalletException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/exception/PaymentProviderException.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/service/payment/DomainPaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/service/payment/DomainPaymentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/feign/client/FeignWalletClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/client/wallet/FeignWalletClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/feign/client/WalletClientAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/client/wallet/adapter/WalletClientAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/feign/model/payment/PaymentAccountData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/client/payment/dto/request/PaymentAccountData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/feign/model/payment/PaymentDestinationProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/client/payment/dto/request/PaymentDestinationProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/feign/model/payment/PaymentSourceInformationProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/client/payment/dto/request/PaymentSourceInformationProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/feign/model/payment/PaymentSourceProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/client/payment/dto/request/PaymentSourceProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/feign/model/payment/PaymentTransactionProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/client/payment/dto/request/PaymentProviderRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/feign/model/wallet/WalletTransactionRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/client/wallet/dto/request/WalletTransactionRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/feign/model/wallet/WalletTransactionResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/client/wallet/dto/response/WalletTransactionResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/feign/model/wallet/WalletUserBalanceResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/client/wallet/dto/response/WalletUserBalanceResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/jpa/entity/RecipientBankAccountEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/recipient/entity/RecipientBankAccountEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/jpa/entity/WalletBankAccountEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/wallet/entity/WalletBankAccountEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/jpa/entity/WalletTransactionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/wallet/entity/WalletTransactionEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/jpa/mapper/RecipientBankAccountRepositoryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/recipient/mapper/RecipientBankAccountRepositoryMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/jpa/mapper/WalletBankAccountRepositoryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/wallet/mapper/WalletBankAccountRepositoryMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/jpa/mapper/WalletTransactionRepositoryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/wallet/mapper/WalletTransactionRepositoryMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/jpa/repository/recipient/RecipientBankAccountEntityRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/recipient/RecipientBankAccountEntityRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/jpa/repository/recipient/RecipientBankAccountRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/recipient/adapter/RecipientRecipientBankAccountRepositoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/jpa/repository/wallet/bank/WalletBankAccountEntityRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/wallet/WalletBankAccountEntityRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/jpa/repository/wallet/bank/WalletBankAccountRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/wallet/adapter/WalletBankAccountRepositoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/jpa/repository/wallet/transaction/WalletTransactionEntityRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/wallet/WalletTransactionEntityRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/jpa/repository/wallet/transaction/WalletTransactionRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/wallet/adapter/WalletTransactionRepositoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/payment/adapter/PaymentRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/payment/adapter/PaymentRepositoryAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/payment/entity/PaymentEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/payment/entity/PaymentEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/payment/mapper/PaymentRepositoryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/payment/mapper/PaymentRepositoryMapper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -300,6 +250,47 @@
       <updated>1679194051911</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/payment/adapter/PaymentRepositoryAdapter.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/payment/adapter/PaymentRepositoryAdapter.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/payment/adapter/PaymentRepositoryAdapter.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/service/payment/DomainPaymentService.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/service/payment/DomainPaymentService.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/service/payment/DomainPaymentService.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="com.ontop.walletservice.domain.model.payment.Payment" memberName="id" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

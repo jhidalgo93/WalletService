@@ -39,12 +39,11 @@ public class PaymentEntity implements Serializable {
     @Column(name = "create_date")
     private LocalDateTime createDate;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "wallet_transaction_id")
     private WalletTransactionEntity walletTransaction;
 
-    @OneToMany(mappedBy = "payment", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PaymentStateEntity> paymentStates = new ArrayList<>();
+    @OneToMany(mappedBy = "payment")
+    private List<PaymentStateEntity> paymentStates;
 
-    // Constructors, getters and setters
 }

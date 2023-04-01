@@ -3,7 +3,7 @@ package com.ontop.walletservice.domain.service.payment;
 import com.ontop.walletservice.domain.client.PaymentProviderClient;
 import com.ontop.walletservice.domain.exception.InvalidBankAccountException;
 import com.ontop.walletservice.domain.exception.InvalidPaymentException;
-import com.ontop.walletservice.domain.exception.PaymentProviderException;
+import com.ontop.walletservice.domain.exception.GeneralErrorWalletException;
 import com.ontop.walletservice.domain.model.payment.PaymentProvider;
 import com.ontop.walletservice.domain.model.payment.PaymentState;
 import com.ontop.walletservice.domain.model.payment.PaymentStatus;
@@ -62,7 +62,7 @@ public class DomainPaymentService implements PaymentService {
             return createdPayment;
         } catch (Exception e) {
             revertWithdrawTransaction(userRecipientBankAccount, walletTransaction, amount);
-            throw new PaymentProviderException("Un expected erro, it was not possible process your payment");
+            throw new GeneralErrorWalletException("Unexpected error, it was not possible to process your payment");
         }
 
     }

@@ -7,4 +7,3 @@ public class GeneralErrorWalletException extends RuntimeException {
 
     }
 }
-
