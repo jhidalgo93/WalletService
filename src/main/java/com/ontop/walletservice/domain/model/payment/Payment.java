@@ -26,7 +26,7 @@ public class Payment implements Serializable  {
 
     private Double amount;
 
-    private LocalDateTime createDate;
+    private LocalDateTime created;
 
     private WalletTransaction walletTransaction;
 

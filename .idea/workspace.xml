@@ -6,13 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="0d75a9a0-6702-488c-a7af-5238b95649e3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/application/config/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/application/config/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/exception/GeneralErrorWalletException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/exception/GeneralErrorWalletException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/exception/PaymentProviderException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/model/payment/Payment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/model/payment/Payment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/repository/PaymentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/repository/PaymentRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/service/payment/DomainPaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/service/payment/DomainPaymentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/payment/adapter/PaymentRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/payment/adapter/PaymentRepositoryAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/payment/entity/PaymentEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/payment/entity/PaymentEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/payment/mapper/PaymentRepositoryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/payment/mapper/PaymentRepositoryMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/schema.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -256,33 +256,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/payment/adapter/PaymentRepositoryAdapter.java</url>
-          <line>32</line>
-          <option name="timeStamp" value="66" />
+          <line>41</line>
+          <option name="timeStamp" value="76" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/payment/adapter/PaymentRepositoryAdapter.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="67" />
+          <line>45</line>
+          <option name="timeStamp" value="77" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/ontop/walletservice/infrastructure/repository/payment/adapter/PaymentRepositoryAdapter.java</url>
           <line>43</line>
-          <option name="timeStamp" value="68" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/service/payment/DomainPaymentService.java</url>
-          <line>52</line>
-          <option name="timeStamp" value="69" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/service/payment/DomainPaymentService.java</url>
-          <line>36</line>
-          <option name="timeStamp" value="70" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/ontop/walletservice/domain/service/payment/DomainPaymentService.java</url>
-          <line>59</line>
-          <option name="timeStamp" value="71" />
+          <option name="timeStamp" value="78" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -29,15 +30,17 @@ public class PaymentRepositoryAdapter implements PaymentRepository {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public Payment save(Payment payment) {
+    public Payment save(Payment payment, PaymentState paymentState) {
         PaymentEntity paymentEntity = paymentRepositoryMapper.toPaymentEntity(payment);
+        paymentEntity.setCreated(LocalDateTime.now());
+
+        PaymentStateEntity paymentStateEntity = paymentRepositoryMapper.toPaymentStateEntity(paymentState);
+        paymentStateEntity.setCreated(LocalDateTime.now());
+
+        paymentStateEntity.setPayment(paymentEntity);
+        paymentEntity.setPaymentStates(List.of(paymentStateEntity));
 
         PaymentEntity createdPayment = paymentEntityRepository.save(paymentEntity);
-        PaymentStateEntity paymentState = paymentEntity.getPaymentStates().get(0);
-        paymentState.setPayment(createdPayment);
-        PaymentStateEntity createPaymentState = paymentStateEntityRepository.save(paymentState);
-
-        createdPayment.setPaymentStates(List.of(createPaymentState));
 
         Payment response = paymentRepositoryMapper.toPayment(createdPayment);
 

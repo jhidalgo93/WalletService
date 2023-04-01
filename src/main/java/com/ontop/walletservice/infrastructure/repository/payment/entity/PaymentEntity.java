@@ -36,14 +36,14 @@ public class PaymentEntity implements Serializable {
 
     private Double amount;
 
-    @Column(name = "create_date")
-    private LocalDateTime createDate;
+    @Column(name = "created")
+    private LocalDateTime created;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "wallet_transaction_id")
     private WalletTransactionEntity walletTransaction;
 
-    @OneToMany(mappedBy = "payment")
+    @OneToMany(mappedBy = "payment", cascade = CascadeType.PERSIST)
     private List<PaymentStateEntity> paymentStates;
 
 }

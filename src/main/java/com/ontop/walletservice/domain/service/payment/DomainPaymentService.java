@@ -53,11 +53,14 @@ public class DomainPaymentService implements PaymentService {
             PaymentProvider paymentProvider = paymentProviderClient.createPaymentProvider(walletTransaction.getWalletBankAccount(),
                     userRecipientBankAccount, amount);
 
-            Payment payment = buildPayment(userRecipientBankAccount, walletTransaction, PaymentStatus.IN_PROGRESS,
-                    amount);
-            payment.setTransactionId(paymentProvider.getStatus());
+            Payment payment = buildPayment(userRecipientBankAccount, walletTransaction, amount);
+            payment.setTransactionId(paymentProvider.getId());
 
-            Payment createdPayment = paymentRepository.save(payment);
+            Payment createdPayment = paymentRepository.save(payment,
+                    PaymentState.builder()
+                    .status(PaymentStatus.IN_PROGRESS)
+                    .build()
+            );
 
             return createdPayment;
         } catch (Exception e) {
@@ -70,21 +73,18 @@ public class DomainPaymentService implements PaymentService {
     private void revertWithdrawTransaction(RecipientBankAccount userRecipientBankAccount, WalletTransaction walletTransaction, Double amount) {
         walletService.createTopUpWalletTransaction(walletTransaction.getUserId(),
                 walletTransaction.getAmount());
-        Payment errorPayment = buildPayment(userRecipientBankAccount, walletTransaction, PaymentStatus.ERROR,
-                amount);
-        paymentRepository.save(errorPayment);
+        Payment errorPayment = buildPayment(userRecipientBankAccount, walletTransaction, amount);
+        paymentRepository.save(errorPayment, PaymentState.builder()
+                .status(PaymentStatus.ERROR)
+                .build());
     }
 
-    private Payment buildPayment(RecipientBankAccount userRecipientBankAccount, WalletTransaction walletTransaction,
-                                 PaymentStatus paymentStatus, Double amount) {
+    private Payment buildPayment(RecipientBankAccount userRecipientBankAccount, WalletTransaction walletTransaction, Double amount) {
         return Payment.builder()
                 .userId(walletTransaction.getUserId())
                 .amount(amount)
                 .bankAccount(userRecipientBankAccount)
                 .walletTransaction(walletTransaction)
-                .paymentStates(List.of(PaymentState.builder()
-                        .status(paymentStatus)
-                        .build()))
                 .build();
     }
 

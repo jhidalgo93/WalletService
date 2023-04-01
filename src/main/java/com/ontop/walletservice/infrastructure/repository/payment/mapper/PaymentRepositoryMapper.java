@@ -17,19 +17,11 @@ public interface PaymentRepositoryMapper {
 
     PaymentRepositoryMapper INSTANCE = Mappers.getMapper(PaymentRepositoryMapper.class);
 
-    @IterableMapping(qualifiedByName = "mapPaymentStateToPaymentStateEntity")
-    List<PaymentStateEntity> mapPaymentStateListToPaymentStateEntityList(List<PaymentState> paymentStates);
-
-    @Named("mapPaymentStateToPaymentStateEntity")
-    default PaymentStateEntity mapPaymentStateToPaymentStateEntity(PaymentState paymentState) {
-        PaymentStateEntity paymentStateEntity = new PaymentStateEntity();
-        paymentStateEntity.setStatus(paymentState.getStatus());
-        paymentStateEntity.setCreated(paymentState.getCreated());
-        return paymentStateEntity;
-    }
-
-    @Mapping(target = "paymentStates", source = "paymentStates")
+    @Mapping(target = "paymentStates", ignore = true)
     PaymentEntity toPaymentEntity(Payment payment);
+
+    @Mapping(target = "payment", ignore = true)
+    PaymentStateEntity toPaymentStateEntity(PaymentState paymentState);
 
     @IterableMapping(qualifiedByName = "mapPaymentStateToPaymentState")
     List<PaymentState> mapPaymentStateListToPaymentStateList(List<PaymentStateEntity> paymentStates);
@@ -46,6 +38,9 @@ public interface PaymentRepositoryMapper {
 
     @Mapping(target = "paymentStates", source = "paymentStates")
     Payment toPayment(PaymentEntity paymentEntity);
+
+
+
 
 
 }
