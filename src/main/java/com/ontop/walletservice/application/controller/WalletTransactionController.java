@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(value = "/user/{user_id}/wallet-transactions")
+@RequestMapping(value = "/costs")
 public class WalletTransactionController {
 
 

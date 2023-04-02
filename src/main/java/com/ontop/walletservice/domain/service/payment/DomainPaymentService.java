@@ -5,8 +5,8 @@ import com.ontop.walletservice.domain.exception.InvalidBankAccountException;
 import com.ontop.walletservice.domain.exception.InvalidPaymentException;
 import com.ontop.walletservice.domain.exception.GeneralErrorWalletException;
 import com.ontop.walletservice.domain.model.payment.PaymentProvider;
-import com.ontop.walletservice.domain.model.payment.PaymentState;
 import com.ontop.walletservice.domain.model.payment.PaymentStatus;
+import com.ontop.walletservice.domain.model.payment.PaymentState;
 import com.ontop.walletservice.domain.model.recipient.RecipientBankAccount;
 import com.ontop.walletservice.domain.model.payment.Payment;
 import com.ontop.walletservice.domain.model.wallet.WalletTransaction;
@@ -15,6 +15,7 @@ import com.ontop.walletservice.domain.repository.RecipientBankAccountRepository;
 import com.ontop.walletservice.domain.service.wallet.WalletService;
 import lombok.AllArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -42,9 +43,40 @@ public class DomainPaymentService implements PaymentService {
 
         WalletTransaction walletTransaction = walletService.createWithdrawWalletTransaction(userId, amount);
         Payment payment = createPayment(userRecipientBankAccount, walletTransaction, amount);
-
-
         return payment;
+    }
+
+    @Override
+    public void processAllPendingPayments() {
+        List<Payment> payments  = paymentRepository.getAllPendingPayments();
+        payments.forEach(payment -> {
+            PaymentStatus paymentStatus = paymentProviderClient.getPaymentStatus(payment.getTransactionId());
+            switch (paymentStatus) {
+                case PROCESSING -> processCompletePayment(payment);
+                case FAILED -> processFailPayment(payment);
+            }
+        });
+    }
+
+
+    private void processCompletePayment(Payment payment) {
+       PaymentState paymentState = PaymentState.builder()
+                .paymentId(payment.getId())
+                .created(LocalDateTime.now())
+                .status(PaymentStatus.COMPLETED)
+                .build();
+
+        paymentRepository.savePaymentState(paymentState);
+    }
+
+    private void processFailPayment(Payment payment) {
+        walletService.createTopUpWalletTransaction(payment.getUserId(), payment.getAmount());
+        PaymentState paymentState = PaymentState.builder()
+                .paymentId(payment.getId())
+                .created(LocalDateTime.now())
+                .status(PaymentStatus.REFOUNDED)
+                .build();
+        paymentRepository.savePaymentState(paymentState);
     }
 
     private Payment createPayment(RecipientBankAccount userRecipientBankAccount, WalletTransaction walletTransaction, Double amount) {
@@ -58,7 +90,7 @@ public class DomainPaymentService implements PaymentService {
 
             Payment createdPayment = paymentRepository.save(payment,
                     PaymentState.builder()
-                    .status(PaymentStatus.IN_PROGRESS)
+                    .status(PaymentStatus.PROCESSING)
                     .build()
             );
 
@@ -70,12 +102,12 @@ public class DomainPaymentService implements PaymentService {
 
     }
 
-    private void revertWithdrawTransaction(RecipientBankAccount userRecipientBankAccount, WalletTransaction walletTransaction, Double amount) {
-        walletService.createTopUpWalletTransaction(walletTransaction.getUserId(),
-                walletTransaction.getAmount());
+    private void revertWithdrawTransaction(RecipientBankAccount userRecipientBankAccount,
+                                           WalletTransaction walletTransaction, Double amount) {
+        walletService.createTopUpWalletTransaction(walletTransaction.getUserId(), amount);
         Payment errorPayment = buildPayment(userRecipientBankAccount, walletTransaction, amount);
         paymentRepository.save(errorPayment, PaymentState.builder()
-                .status(PaymentStatus.ERROR)
+                .status(PaymentStatus.FAILED)
                 .build());
     }
 

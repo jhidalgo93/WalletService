@@ -21,7 +21,7 @@ public interface PaymentRepositoryMapper {
     PaymentEntity toPaymentEntity(Payment payment);
 
     @Mapping(target = "payment", ignore = true)
-    PaymentStateEntity toPaymentStateEntity(PaymentState paymentState);
+    PaymentStateEntity toPaymentStateEntityIgnorePayment(PaymentState paymentState);
 
     @IterableMapping(qualifiedByName = "mapPaymentStateToPaymentState")
     List<PaymentState> mapPaymentStateListToPaymentStateList(List<PaymentStateEntity> paymentStates);
@@ -39,8 +39,11 @@ public interface PaymentRepositoryMapper {
     @Mapping(target = "paymentStates", source = "paymentStates")
     Payment toPayment(PaymentEntity paymentEntity);
 
+    @Mapping(target = "paymentId", source = "payment.id")
+    PaymentState toPaymentState(PaymentStateEntity paymentStateEntity);
 
-
+    @Mapping(target = "payment.id", source = "paymentId")
+    PaymentStateEntity toPaymentStateEntity(PaymentState paymentState);
 
 
 }

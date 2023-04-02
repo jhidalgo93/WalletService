@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 @AllArgsConstructor
@@ -34,7 +35,7 @@ public class PaymentRepositoryAdapter implements PaymentRepository {
         PaymentEntity paymentEntity = paymentRepositoryMapper.toPaymentEntity(payment);
         paymentEntity.setCreated(LocalDateTime.now());
 
-        PaymentStateEntity paymentStateEntity = paymentRepositoryMapper.toPaymentStateEntity(paymentState);
+        PaymentStateEntity paymentStateEntity = paymentRepositoryMapper.toPaymentStateEntityIgnorePayment(paymentState);
         paymentStateEntity.setCreated(LocalDateTime.now());
 
         paymentStateEntity.setPayment(paymentEntity);
@@ -46,4 +47,22 @@ public class PaymentRepositoryAdapter implements PaymentRepository {
 
         return response;
     }
+
+    @Override
+    @Transactional
+    public PaymentState savePaymentState(PaymentState paymentState) {
+        PaymentStateEntity paymentStateEntity = paymentRepositoryMapper.toPaymentStateEntity(paymentState);
+        return paymentRepositoryMapper.toPaymentState(paymentStateEntityRepository.save(paymentStateEntity));
+    }
+
+    @Override
+    @Transactional
+    public List<Payment> getAllPendingPayments() {
+        return paymentEntityRepository.getAllPendingPayments()
+                .stream()
+                .map(paymentRepositoryMapper::toPayment)
+                .collect(Collectors.toList());
+    }
+
+
 }
