@@ -14,9 +14,10 @@ public interface PaymentMapper {
 
     @Mapping(source = "id", target = "id")
     @Mapping(source = "userId", target = "userId")
+    @Mapping(source = "created", target = "created")
     @Mapping(source = "transactionId", target = "transactionId")
     @Mapping(source = "bankAccount.id", target = "recipientBankAccountId")
-    @Mapping(expression = "java(payment.getPaymentStates().isEmpty() ? null : payment.getPaymentStates().get(0).getStatus())", target = "status")
+    @Mapping(expression = "java(payment.getPaymentStates().isEmpty() ? null : payment.getPaymentStates().get(payment.getPaymentStates().size() - 1).getStatus())", target = "status")
     @Mapping(source = "amount", target = "amount")
     PaymentResponse toPaymentTransactionResponse(Payment payment);
 

@@ -5,6 +5,8 @@ import com.ontop.walletservice.domain.model.payment.PaymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 public class PaymentResponse {
@@ -24,5 +26,7 @@ public class PaymentResponse {
 
     @JsonProperty("user_id")
     private Long userId;
+
+    private LocalDateTime created;
 
 }

@@ -47,12 +47,18 @@ public class DomainPaymentService implements PaymentService {
     }
 
     @Override
+    public List<Payment> getAllPayments(Long userId, Double amount, LocalDateTime createdFrom,
+                                        LocalDateTime createdTo, int pageSize, int offSet) {
+        return paymentRepository.getAllPayments(userId, amount, createdFrom, createdTo, pageSize, offSet);
+    }
+
+    @Override
     public void processAllPendingPayments() {
         List<Payment> payments  = paymentRepository.getAllPendingPayments();
         payments.forEach(payment -> {
             PaymentStatus paymentStatus = paymentProviderClient.getPaymentStatus(payment.getTransactionId());
             switch (paymentStatus) {
-                case PROCESSING -> processCompletePayment(payment);
+                case COMPLETED -> processCompletePayment(payment);
                 case FAILED -> processFailPayment(payment);
             }
         });

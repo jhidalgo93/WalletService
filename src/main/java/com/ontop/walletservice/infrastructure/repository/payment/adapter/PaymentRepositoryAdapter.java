@@ -9,6 +9,7 @@ import com.ontop.walletservice.infrastructure.repository.payment.entity.PaymentE
 import com.ontop.walletservice.infrastructure.repository.payment.entity.PaymentStateEntity;
 import com.ontop.walletservice.infrastructure.repository.payment.mapper.PaymentRepositoryMapper;
 import lombok.AllArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,6 +60,14 @@ public class PaymentRepositoryAdapter implements PaymentRepository {
     @Transactional
     public List<Payment> getAllPendingPayments() {
         return paymentEntityRepository.getAllPendingPayments()
+                .stream()
+                .map(paymentRepositoryMapper::toPayment)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Payment> getAllPayments(Long userId, Double amount, LocalDateTime createdFrom, LocalDateTime createdTo, int pageSize, int offSet) {
+        return paymentEntityRepository.findPayments(amount, createdFrom, createdTo, userId, pageSize, offSet)
                 .stream()
                 .map(paymentRepositoryMapper::toPayment)
                 .collect(Collectors.toList());
