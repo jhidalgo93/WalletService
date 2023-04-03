@@ -36,6 +36,7 @@ CREATE TABLE  IF NOT EXISTS PAYMENT (
     recipient_bank_account_id BIGINT,
     user_id BIGINT NOT NULL,
     amount DOUBLE,
+    fee DOUBLE,
     created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     wallet_transaction_id BIGINT,
     FOREIGN KEY (recipient_bank_account_id) REFERENCES recipient_bank_account(id),

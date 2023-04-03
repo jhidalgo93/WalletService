@@ -26,10 +26,14 @@ public class Payment implements Serializable  {
 
     private Double amount;
 
+    private Double fee;
+
     private LocalDateTime created;
 
     private WalletTransaction walletTransaction;
 
     private List<PaymentState> paymentStates;
+
+
 
 }

@@ -24,6 +24,8 @@ public class PaymentResponse {
 
     private Double amount;
 
+    private Double fee;
+
     @JsonProperty("user_id")
     private Long userId;
 

@@ -4,6 +4,7 @@ import com.ontop.walletservice.domain.client.PaymentProviderClient;
 import com.ontop.walletservice.domain.exception.InvalidBankAccountException;
 import com.ontop.walletservice.domain.exception.InvalidPaymentException;
 import com.ontop.walletservice.domain.exception.GeneralErrorWalletException;
+import com.ontop.walletservice.domain.model.fee.TransactionFee;
 import com.ontop.walletservice.domain.model.payment.PaymentProvider;
 import com.ontop.walletservice.domain.model.payment.PaymentStatus;
 import com.ontop.walletservice.domain.model.payment.PaymentState;
@@ -12,6 +13,7 @@ import com.ontop.walletservice.domain.model.payment.Payment;
 import com.ontop.walletservice.domain.model.wallet.WalletTransaction;
 import com.ontop.walletservice.domain.repository.PaymentRepository;
 import com.ontop.walletservice.domain.repository.RecipientBankAccountRepository;
+import com.ontop.walletservice.domain.service.fee.FeeService;
 import com.ontop.walletservice.domain.service.wallet.WalletService;
 import lombok.AllArgsConstructor;
 
@@ -30,6 +32,8 @@ public class DomainPaymentService implements PaymentService {
     private final WalletService walletService;
 
     private final PaymentProviderClient paymentProviderClient;
+
+    private final FeeService feeService;
 
 
     @Override
@@ -76,7 +80,8 @@ public class DomainPaymentService implements PaymentService {
     }
 
     private void processFailPayment(Payment payment) {
-        walletService.createTopUpWalletTransaction(payment.getUserId(), payment.getAmount());
+
+        walletService.createTopUpWalletTransaction(payment.getUserId(), payment.getAmount() + payment.getFee());
         PaymentState paymentState = PaymentState.builder()
                 .paymentId(payment.getId())
                 .created(LocalDateTime.now())
@@ -117,12 +122,15 @@ public class DomainPaymentService implements PaymentService {
                 .build());
     }
 
-    private Payment buildPayment(RecipientBankAccount userRecipientBankAccount, WalletTransaction walletTransaction, Double amount) {
+    private Payment buildPayment(RecipientBankAccount userRecipientBankAccount, WalletTransaction walletTransaction,
+                                 Double amount) {
+        TransactionFee fee = feeService.calculateFee(amount);
         return Payment.builder()
                 .userId(walletTransaction.getUserId())
-                .amount(amount)
+                .amount(fee.getFinalAmount())
                 .bankAccount(userRecipientBankAccount)
                 .walletTransaction(walletTransaction)
+                .fee(fee.getTransactionFee())
                 .build();
     }
 

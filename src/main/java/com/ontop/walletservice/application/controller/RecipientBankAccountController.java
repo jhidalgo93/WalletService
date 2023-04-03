@@ -13,7 +13,7 @@ import javax.validation.Valid;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(value = "/user/{user_id}/recipient-bank-account")
+@RequestMapping(value = "/user/{user_id}/recipient-bank-accounts")
 public class RecipientBankAccountController {
 
     private final RecipientBankAccountService recipientBankAccountService;

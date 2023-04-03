@@ -36,6 +36,8 @@ public class PaymentEntity implements Serializable {
 
     private Double amount;
 
+    private Double fee;
+
     @Column(name = "created")
     private LocalDateTime created;
 
