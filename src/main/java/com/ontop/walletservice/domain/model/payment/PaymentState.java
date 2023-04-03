@@ -13,12 +13,8 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 public class PaymentState implements Serializable {
-
     private Long id;
-
     private Long paymentId;
     private PaymentStatus status;
-
     private LocalDateTime created;
-
 }

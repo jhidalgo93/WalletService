@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(value = "/fee")
+@RequestMapping(value = "/fees")
 public class FeeController {
 
     private final FeeService feeService;
 
     private final FeeMapper feeMapper = FeeMapper.INSTANCE;
 
-    @GetMapping
-    public FeeResponse calculateFee(@RequestParam(name = "amount") Double amount) {
+    @GetMapping(path = "/cost")
+    public FeeResponse getCostFee(@RequestParam(name = "amount") Double amount) {
         return feeMapper.toTransactionFeeResponse(feeService.calculateFee(amount));
     }
 
